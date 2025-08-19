@@ -1,0 +1,59 @@
+# Projeto Telecom X - Parte 2: Prevendo a Evasão de Clientes com Machine Learning!
+
+## 🚀 Sobre o Projeto
+
+Depois da primeira parte, onde eu explorei os dados para entender *por que* os clientes cancelavam o serviço, o desafio aqui foi um passo além: será que a gente consegue **prever** quem vai cancelar?
+
+O objetivo principal foi criar um "detetive" (nosso modelo de machine learning) que conseguisse olhar para as características de um cliente e dizer se ele tem uma alta chance de cancelar o serviço (dar churn) ou não. Isso é super valioso para uma empresa, pois permite que ela atue de forma proativa para tentar reter esses clientes!
+
+## 📂 Estrutura dos Arquivos
+
+Neste repositório, você vai encontrar:
+
+*   `CHALLENGE_ALURA_TELECOMX_PARTE_2.ipynb`: Meu notebook com todo o passo a passo da criação do modelo.
+*   `dados_tratados.csv`: A base de dados que eu limpei e preparei na Parte 1, pronta para ser usada.
+*   `README.md`: Este arquivo que você está lendo, explicando tudo! :)
+
+## 🛠️ Como eu preparei os dados para a mágica acontecer!
+
+Antes de ensinar nosso modelo, precisei fazer um último preparo nos dados. Modelos de machine learning são super inteligentes, mas eles não entendem texto, só números!
+
+#### 1. Transformando Texto em Números (One-Hot Encoding)
+Colunas como "Tipo de Contrato" ou "Gênero" precisavam virar números. Usei uma técnica chamada *One-Hot Encoding* que, de forma simples, cria novas colunas de 0 e 1 para cada categoria. Por exemplo, a coluna `genero` virou `genero_Masculino`, que é `1` se o cliente for homem e `0` se for mulher.
+
+#### 2. Deixando tudo na mesma "régua" (Normalização)
+Notei que algumas colunas tinham valores muito diferentes, como o total gasto (que podia ser milhares) e o tempo de contrato (que ia até 72). Para o modelo não dar mais importância para os números grandes só por serem grandes, eu usei uma técnica chamada `StandardScaler`. Ela coloca todas as colunas na mesma escala, o que ajuda o modelo a aprender de forma mais justa e rápida.
+
+#### 3. A "cola na prova" (Separação em Treino e Teste)
+Para saber se meu modelo realmente aprendeu e não só "decorou" as respostas, eu separei os dados:
+*   **70% para Treino:** Foi o material que eu dei para o modelo "estudar".
+*   **30% para Teste:** Foi a "prova final", dados que o modelo nunca tinha visto, para testar se ele era bom de verdade.
+
+## 🧠 Construindo e Avaliando o Modelo
+
+#### Por que a Regressão Logística?
+Como estou começando, escolhi a **Regressão Logística**. É um modelo super famoso, rápido e ótimo para problemas de classificação de "sim" ou "não", como o nosso (o cliente cancela ou não?).
+
+#### E o resultado? Nosso modelo é bom?
+Fiquei bem feliz com o resultado do nosso primeiro modelo!
+
+*   **Acurácia de 81.50%:** Isso significa que, de cada 100 clientes, nosso modelo acertou a previsão para cerca de 81 deles. Um ótimo começo!
+
+*   **Identificando quem vai cancelar (o mais importante!):**
+    De todos os clientes que realmente cancelaram o serviço no nosso grupo de teste, o modelo conseguiu **identificar corretamente 57% deles**. Pode não parecer perfeito, mas isso já dá para a empresa uma lista valiosa de clientes para entrar em contato e tentar reter!
+
+    O erro mais chato que ele cometeu foi deixar passar 239 clientes que cancelaram (os "Falsos Negativos"). É aqui que a gente pode tentar melhorar no futuro!
+
+## 💡 Principais Descobertas (Insights)
+
+Este modelo confirmou o que a gente já suspeitava na primeira análise: o perfil do cliente com maior risco de cancelar é aquele com **contrato mensal** e **pouco tempo de serviço**. O modelo provavelmente aprendeu a dar um peso maior para essas características na hora de fazer a previsão.
+
+## 💻 Como Executar o Projeto
+
+Quer testar o projeto você mesma? É bem simples!
+
+1.  **Baixe os arquivos:** Faça o download do notebook `CHALLENGE_ALURA_TELECOMX_PARTE_2.ipynb` e do arquivo `dados_tratados.csv`.
+2.  **Use o Google Colab:** Abra o Google Colab, clique em `Arquivo > Upload de notebook` e selecione o arquivo `.ipynb`.
+3.  **Faça o Upload dos Dados:** No menu esquerdo do Colab, clique no ícone de pasta e depois no ícone de upload para subir o arquivo `dados_tratados.csv`.
+4.  **Instale as bibliotecas:** A primeira célula do notebook já deve conter os `imports` necessários (`pandas`, `scikit-learn`, etc). O Colab já tem quase tudo instalado!
+5.  **Execute as células:** Rode as células uma por uma, na ordem, e acompanhe a mágica acontecer!
